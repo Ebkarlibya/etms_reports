@@ -1,0 +1,13 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Bank Account",
+  "modified": "2020-11-13 17:06:06.081023",
+  "name": "Bank Account-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "\nfrappe.ui.form.on('Bank Account', {\n    refresh(frm) {\n\t\t// your code here\n\t},\n\tonload: function(frm) {\n\t    var abbr_field = frm.get_field(\"account_currency\");\n\t    var balance_field = frm.get_field(\"account_balance\");\n\t    \n\t    abbr_field.df.depends_on = \"is_company_account\";  \n\t    abbr_field.df.read_only = 1;\n\t    balance_field.df.depends_on = \"is_company_account\";\n\t    balance_field.df.read_only = 1;\n\t},\n\taccount: function(frm) {\n        if(frm.doc.account) {\n            frappe.call({\n    \t\t    method: \"erpnext.accounts.doctype.payment_entry.payment_entry.get_account_details\",\n    \t\t\t\targs: {\n    \t\t\t\t\t\"account\": frm.doc.account,\n    \t\t\t\"date\": frappe.datetime.get_today(),\n    \t\t\t},\n    \t\tcallback: function(r) {\n    \t\t    var currency_abbr = r.message.account_currency;\n    \t\t    var account_balance = r.message.account_balance;\n    \t\t    \n    \t\t\tvar balance = format_currency(account_balance, currency_abbr);\n    \t\t\tfrm.set_value(\"account_currency\", currency_abbr);\n    \t\t\tfrm.set_value(\"account_balance\", balance);\n    \t\t\trefresh_field(\"account_currency\", \"account_balance\");\n    \t\t}\n    \t  });\n    \t}\n    }\n});"
+ }
+]
