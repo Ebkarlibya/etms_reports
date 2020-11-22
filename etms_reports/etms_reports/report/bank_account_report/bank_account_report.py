@@ -20,28 +20,30 @@ def get_columns(filters):
 			"fieldname": "account_name",
 			"label": "Account Name",
 			"fieldtype": "data",
-            "read_only": 1
+            "read_only": 1,
+            "width": 150
 			
 		},
 		{
 			"fieldname": "account",
 			"label": "Company Account",
 			"fieldtype": "Link",
-			"options": "Account"
+			"options": "Account",
+            "width": 150
 		},
 		{
 			"fieldname": "bank",
 			"label": "Bank",
 			"fieldtype": "Link",
 			"options": "Bank",
-            "width": 100
+            "width": 120
 		},
 		{
 			"fieldname": "website",
 			"label": "Website",
 			"fieldtype": "Data",
 			"read_only": 1,
-            "width": 100
+            "width": 120
 		},
         {
             "fieldname": 'account_currency',
@@ -60,7 +62,8 @@ def get_columns(filters):
 			"fieldname": "company",
 			"label": "Company",
 			"fieldtype": "data",
-            "read_only": 1
+            "read_only": 1,
+            "width": 120
 			
 		},
 	]

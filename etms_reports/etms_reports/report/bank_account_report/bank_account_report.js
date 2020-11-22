@@ -9,7 +9,16 @@ frappe.query_reports["Bank Account Report"] = {
 			"label": __("Company Account"),
 			"fieldtype": "Link",
             "options": "Account",
-
+            get_query: function() {
+                return {
+                    "doctype": "Account",
+                    "filters": {
+                    "account_type": "Bank",
+                    "company": frappe.defaults.get_user_default("company"),
+                    "is_group": 0
+                    }
+                }
+            }
         },
         {
             "fieldname": "account_currency",
