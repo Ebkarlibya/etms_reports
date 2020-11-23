@@ -78,12 +78,15 @@ def get_data(filters):
     #     res = frappe.db.sql(f"select * from `tabBank Account` where bank='{filters.get('bank')}'", as_dict=1)
     # else:
     #     res = frappe.db.sql("select * from `tabBank Account`", as_dict=1)
-    if(filters.get("account")):
-        filters_dict["account"]=filters.get("account")
+    if(filters.get("bank")):
+        filters_dict["bank"]=filters.get("bank")
 
     if(filters.get("account_currency")):
         filters_dict["account_currency"]=filters.get("account_currency")
-    
+        
+    if(filters.get("company")):
+        filters_dict["company"]=filters.get("company") 
+
     res = frappe.get_all("Bank Account", fields=['*'], filters=filters_dict)
 
     while (idx < len(res)):

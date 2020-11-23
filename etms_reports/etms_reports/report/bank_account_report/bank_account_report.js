@@ -5,26 +5,22 @@
 frappe.query_reports["Bank Account Report"] = {
 	"filters": [
 		{
-			"fieldname": "account",
-			"label": __("Company Account"),
+			"fieldname": "bank",
+			"label": __("Bank"),
 			"fieldtype": "Link",
-            "options": "Account",
-            get_query: function() {
-                return {
-                    "doctype": "Account",
-                    "filters": {
-                    "account_type": "Bank",
-                    "company": frappe.defaults.get_user_default("company"),
-                    "is_group": 0
-                    }
-                }
-            }
+            "options": "Bank",
         },
         {
             "fieldname": "account_currency",
             "label": __("Account Currency"),
             "fieldtype": 'Link',
             "options": "Currency"
+        },
+        {
+            "fieldname": "company",
+            "label": __("Company"),
+            "fieldtype": 'Link',
+            "options": "Company"
         }
 	]
 };
